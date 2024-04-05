@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';  
+import { useDispatch, useSelector } from 'react-redux';  
 import productList from '../data/productList.json'
 import '../styles/home.css';
 import cartSlice from '../data/cartSlice';
@@ -6,7 +6,9 @@ import cartSlice from '../data/cartSlice';
 const Home = () => {
   // actions with cart
   const {addToCart, removeFromCart} = cartSlice.actions;
+  const { cartProductIds } = useSelector((state) => state.cart)
   const dispatch = useDispatch();
+  console.log(cartProductIds);
 
   return (
     <div className="container product-catalogue">
@@ -21,8 +23,8 @@ const Home = () => {
                   <h5 className="card-title">{product.name}</h5>
                   <p className="card-text">${product.price}</p>
 
-                  <button className="btn btn-primary" onClick={() => dispatch(addToCart(product.id))}>Add to cart</button>
-                  <button className="btn btn-primary" onClick={() => dispatch(removeFromCart(product.id))}>Remove from cart</button>
+                  {!cartProductIds.includes(product.id) && (<button className="btn btn-primary" onClick={() => dispatch(addToCart(product.id))}>Add to cart</button>)}
+                  {cartProductIds.includes(product.id) && (<button className="btn btn-primary" onClick={() => dispatch(removeFromCart(product.id))}>Remove from cart</button>)}
                 </div>
               </div>
             </div>
