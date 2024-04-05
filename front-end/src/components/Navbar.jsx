@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import '../styles/navbar.css'
-import { UseSelector, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
   const {cartProductIds} = useSelector((state) => state.cart);

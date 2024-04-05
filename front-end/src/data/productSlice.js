@@ -1,5 +1,6 @@
 // Use this file to manage our product list data instead of the previous productList.json file
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import productList from '../data/productList.json';
 
 // createAsyncThunk always return a promise assets value 
 export const fetchAllProducts = createAsyncThunk(
@@ -31,6 +32,7 @@ const productSlice = createSlice({
                 state.fetchStatus = 'loading'
             })
             builder.addCase(fetchAllProducts.rejected, (state) => { // data being fetched
+                state.data = productList.products;
                 state.fetchStatus = 'error'
             })
         }
