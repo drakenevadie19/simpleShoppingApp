@@ -24,3 +24,8 @@ const cartSlice = createSlice({
         }
     }
 })
+
+// destructuring actions
+// const {actions: cartActions, reducer: cartReducer} = cartSlice;
+
+export default cartSlice;
